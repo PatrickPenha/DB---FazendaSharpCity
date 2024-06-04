@@ -1,0 +1,80 @@
+ALTER TABLE cliente ADD CONSTRAINT telefoneCliente
+    FOREIGN KEY (idTelefoneCliente)
+    REFERENCES telefone (idTelefone)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE fornecedor ADD CONSTRAINT telefoneFornecedor
+    FOREIGN KEY (idTelefoneFornecedor)
+    REFERENCES telefone (idTelefone)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE funcionario ADD CONSTRAINT telefoneFuncionario
+    FOREIGN KEY (idTelefoneFuncionario)
+    REFERENCES telefone (idTelefone)
+    ON DELETE NO ACTION;
+ 
+ALTER TABLE produto ADD CONSTRAINT idTipoProduto
+    FOREIGN KEY (idTipoProduto)
+    REFERENCES tipoProduto (idTipoProduto);
+ 
+ALTER TABLE cadastra ADD CONSTRAINT idFornecedor
+    FOREIGN KEY (idFornecedor)
+    REFERENCES fornecedor (idFornecedor)
+    ON DELETE RESTRICT;
+ 
+ALTER TABLE cadastra ADD CONSTRAINT idProduto
+    FOREIGN KEY (idProduto)
+    REFERENCES produto (idProduto)
+    ON DELETE SET NULL;
+ 
+ALTER TABLE ProdutoPossuiVenda ADD CONSTRAINT idProduto
+    FOREIGN KEY (idProduto)
+    REFERENCES produto (idProduto);
+ 
+ALTER TABLE ProdutoPossuiVenda ADD CONSTRAINT idVenda
+    FOREIGN KEY (idVenda)
+    REFERENCES venda (idVenda);
+ 
+ALTER TABLE efetua ADD CONSTRAINT idFuncionario
+    FOREIGN KEY (idFuncionario)
+    REFERENCES funcionario (idFuncionario);
+ 
+ALTER TABLE efetua ADD CONSTRAINT idVenda
+    FOREIGN KEY (idVenda)
+    REFERENCES venda (idVenda);
+ 
+ALTER TABLE ClientePossuiVenda ADD CONSTRAINT idCliente
+    FOREIGN KEY (idCliente)
+    REFERENCES cliente (idCliente);
+ 
+ALTER TABLE ClientePossuiVenda ADD CONSTRAINT idVenda
+    FOREIGN KEY (idVenda)
+    REFERENCES venda (idVenda);
+ 
+ALTER TABLE ProdutoPossuiCompra ADD CONSTRAINT idProduto
+    FOREIGN KEY (idProduto)
+    REFERENCES produto (idProduto);
+ 
+ALTER TABLE ProdutoPossuiCompra ADD CONSTRAINT idCompra
+    FOREIGN KEY (idCompra)
+    REFERENCES compra (idCompra);
+ 
+ALTER TABLE temCompra ADD CONSTRAINT idCliente
+    FOREIGN KEY (idCliente)
+    REFERENCES cliente (idCliente);
+ 
+ALTER TABLE temCompra ADD CONSTRAINT idCompra
+    FOREIGN KEY (idCompra)
+    REFERENCES compra (idCompra);
+ 
+ALTER TABLE temRelatorio ADD CONSTRAINT idVenda
+    FOREIGN KEY (idVenda)
+    REFERENCES venda (idVenda);
+ 
+ALTER TABLE temRelatorio ADD CONSTRAINT idCompra
+    FOREIGN KEY (idCompra)
+    REFERENCES compra (idCompra);
+ 
+ALTER TABLE temRelatorio ADD CONSTRAINT idRelatorio
+    FOREIGN KEY (idRelatorio)
+    REFERENCES relatorio (idRelatorio);

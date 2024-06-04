@@ -1,0 +1,147 @@
+CREATE TABLE cliente (
+    idCliente SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(20) UNIQUE,
+    cnpj VARCHAR(20) UNIQUE,
+    dtNascimento DATE,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    estado CHAR(2) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    logradouro VARCHAR(100) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(100),
+    cep VARCHAR(20) NOT NULL,
+    tipoPessoa BOOLEAN NOT NULL,
+    sexo CHAR(1),
+    idTelefoneCliente SERIAL
+);
+
+CREATE TABLE fornecedor (
+    idFornecedor SERIAL PRIMARY KEY,
+    razaoSocial VARCHAR(100) UNIQUE NOT NULL,
+    nomeFantasia VARCHAR(100) UNIQUE NOT NULL,
+    cnpj VARCHAR(20) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(100),
+    cep VARCHAR(20) NOT NULL,
+    idTelefoneFornecedor SERIAL
+);
+
+CREATE TABLE funcionario (
+    idFuncionario SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cpf VARCHAR(20) UNIQUE NOT NULL,
+    dtNascimento DATE,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    cidade VARCHAR(100) NOT NULL,
+    bairro VARCHAR(100) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(100) NOT NULL,
+    cep VARCHAR(20) NOT NULL,
+    salario DECIMAL(10, 2),
+    login VARCHAR(100) UNIQUE NOT NULL,
+    senha VARCHAR(100) NOT NULL,
+    idTelefoneFuncionario SERIAL
+);
+
+CREATE TABLE produto (
+    idProduto SERIAL PRIMARY KEY,
+    idTipoProduto SERIAL
+);
+
+CREATE TABLE venda (
+    idVenda SERIAL PRIMARY KEY,
+    precoUnitario FLOAT,
+    dtVenda DATE,
+    formaPagamento VARCHAR(20),
+    quantidade INT
+);
+
+CREATE TABLE compra (
+    idCompra SERIAL PRIMARY KEY,
+    dtCompra DATE,
+    quantidade INT,
+    valorTotal FLOAT
+);
+
+CREATE TABLE relatorio (
+    idRelatorio SERIAL PRIMARY KEY,
+    descricao VARCHAR(200),
+    dtVenda DATE,
+    qtdVendido INT,
+    nomeProduto VARCHAR(20),
+    precoTotal FLOAT,
+    precoUnitario FLOAT
+);
+
+CREATE TABLE telefone (
+    idTelefone SERIAL PRIMARY KEY,
+    telefone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE tipoProduto (
+    idTipoProduto SERIAL NOT NULL PRIMARY KEY,
+    produto VARCHAR(20),
+    qtdProduto INT,
+    validade DATE,
+    preco DECIMAL(10, 2),
+    descricao VARCHAR(200)
+);
+
+CREATE TABLE cadastra (
+    idCadastra SERIAL,
+    dtFornecimento DATE,
+    idFornecedor SERIAL,
+    idProduto SERIAL,
+    PRIMARY KEY (idCadastra, idFornecedor, idProduto)
+);
+
+CREATE TABLE ProdutoPossuiVenda (
+    idProdutoPossuiVenda SERIAL,
+    idProduto SERIAL,
+    idVenda SERIAL,
+    PRIMARY KEY (idProdutoPossuiVenda, idProduto, idVenda)
+);
+
+CREATE TABLE efetua (
+    idEfetua SERIAL,
+    idFuncionario SERIAL,
+    idVenda SERIAL,
+    PRIMARY KEY (idEfetua, idVenda, idFuncionario)
+);
+
+CREATE TABLE ClientePossuiVenda (
+    idClientePossuiVenda SERIAL,
+    idCliente SERIAL,
+    idVenda SERIAL,
+    PRIMARY KEY (idClientePossuiVenda, idVenda, idCliente)
+);
+
+CREATE TABLE ProdutoPossuiCompra (
+    idProdutoPossuiCompra SERIAL,
+    idProduto SERIAL,
+    idCompra SERIAL,
+    PRIMARY KEY (idProdutoPossuiCompra, idCompra, idProduto)
+);
+
+CREATE TABLE temCompra (
+    idTemCompra SERIAL,
+    idCliente SERIAL,
+    idCompra SERIAL,
+    PRIMARY KEY (idTemCompra, idCompra, idCliente)
+);
+
+CREATE TABLE temRelatorio (
+    idTemRelatorio SERIAL,
+    idVenda SERIAL,
+    idCompra SERIAL,
+    idRelatorio SERIAL,
+    PRIMARY KEY (idTemRelatorio, idVenda, idCompra, idRelatorio)
+);
+ 
