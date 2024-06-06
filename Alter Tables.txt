@@ -13,10 +13,6 @@ ALTER TABLE funcionario ADD CONSTRAINT telefoneFuncionario
     REFERENCES telefone (idTelefone)
     ON DELETE NO ACTION;
  
-ALTER TABLE produto ADD CONSTRAINT idTipoProduto
-    FOREIGN KEY (idTipoProduto)
-    REFERENCES tipoProduto (idTipoProduto);
- 
 ALTER TABLE cadastra ADD CONSTRAINT idFornecedor
     FOREIGN KEY (idFornecedor)
     REFERENCES fornecedor (idFornecedor)
