@@ -52,7 +52,11 @@ CREATE TABLE funcionario (
 
 CREATE TABLE produto (
     idProduto SERIAL PRIMARY KEY,
-    idTipoProduto SERIAL
+    produto VARCHAR(20),
+    qtdProduto INT,
+    validade DATE,
+    preco DECIMAL(10, 2),
+    descricao VARCHAR(200)
 );
 
 CREATE TABLE venda (
@@ -83,15 +87,6 @@ CREATE TABLE relatorio (
 CREATE TABLE telefone (
     idTelefone SERIAL PRIMARY KEY,
     telefone VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE tipoProduto (
-    idTipoProduto SERIAL NOT NULL PRIMARY KEY,
-    produto VARCHAR(20),
-    qtdProduto INT,
-    validade DATE,
-    preco DECIMAL(10, 2),
-    descricao VARCHAR(200)
 );
 
 CREATE TABLE cadastra (
