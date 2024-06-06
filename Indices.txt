@@ -1,4 +1,3 @@
-CREATE INDEX idx_produto ON tipoProduto (produto);
 CREATE UNIQUE INDEX cadastra_pkey ON cadastra USING btree (idcadastra, idfornecedor, idproduto);
 CREATE UNIQUE INDEX cliente_cpf_email_login_key ON cliente USING btree (cpf, email, login);
 CREATE UNIQUE INDEX cliente_pkey ON cliente USING btree (idcliente);
